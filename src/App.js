@@ -1,5 +1,6 @@
 import './App.css';
-import ShoppingIndex from './Routing/ShoppingIndex';
+import SPAComponent from './Components/SPAComponent';
+// import ShoppingIndex from './Routing/ShoppingIndex';
 
 // import AxiosDemo from './Components/AxiosDemo';
 // import JqueryAjaxDemo from './Components/JqueryAjaxDemo';
@@ -10,7 +11,8 @@ function App() {
       {/* <JqueryAjaxDemo/> */}
       {/* <AxiosDemo/> */}
       
-      <ShoppingIndex/>
+      {/* <ShoppingIndex/> */}
+      <SPAComponent/>
     </div>
   );
 }

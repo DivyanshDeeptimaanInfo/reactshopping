@@ -1,10 +1,16 @@
 import './App.css';
-import JqueryAjaxDemo from './Components/JqueryAjaxDemo';
+import ShoppingIndex from './Routing/ShoppingIndex';
+
+// import AxiosDemo from './Components/AxiosDemo';
+// import JqueryAjaxDemo from './Components/JqueryAjaxDemo';
 
 function App() {
   return (
     <div className="App">
-      <JqueryAjaxDemo/>
+      {/* <JqueryAjaxDemo/> */}
+      {/* <AxiosDemo/> */}
+      
+      <ShoppingIndex/>
     </div>
   );
 }

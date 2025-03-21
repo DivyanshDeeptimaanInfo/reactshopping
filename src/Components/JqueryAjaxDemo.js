@@ -41,7 +41,7 @@ const JqueryAjaxDemo = () => {
       UserId: "",
       UserName: "",
       Password: "",
-      Age: 0,
+      Age: "",
       Mobile: "",
       Subscribed: false,
     },

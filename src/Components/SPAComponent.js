@@ -2,6 +2,14 @@ import React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
 const SPAComponent = () => {
+  function HTML() {
+    return (
+      <main>
+        <h2>HTML</h2>
+        <p>This is a markup language</p>
+      </main>
+    );
+  }
   return (
     <div className=" container-fluid">
       <BrowserRouter>
@@ -20,15 +28,7 @@ const SPAComponent = () => {
         </nav>
         <hr />
         <Routes>
-          <Route
-            path="html"
-            element={
-              <main>
-                <h2>HTML</h2>
-                <p>This is a markup language</p>
-              </main>
-            }
-          />
+          <Route path="html" element={<HTML />} />
           <Route
             path="css"
             element={

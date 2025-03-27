@@ -57,6 +57,49 @@ app.get("/getusers", (req, res) => {
   });
 });
 
+app.get("/getproducts", (req, res) => {
+  mongoClient.connect("mongodb://127.0.0.1:27017").then((clientObject) => {
+    var database = clientObject.db("reactdb");
+    database
+      .collection("tblproducts")
+      .find({})
+      .toArray()
+      .then((documents) => {
+        res.send(documents);
+        res.end();
+      });
+  });
+});
+
+app.get("/getcategories", (req, res) => {
+  mongoClient.connect("mongodb://127.0.0.1:27017").then((clientObject) => {
+    var database = clientObject.db("reactdb");
+    database
+      .collection("tblcategories")
+      .find({})
+      .toArray()
+      .then((documents) => {
+        res.send(documents);
+        res.end();
+      });
+  });
+});
+
+app.get("/getproduct/:id", (req, res) => {
+  let productId = parseInt(req.params.id);
+  // console.log(req)
+  mongoClient.connect("mongodb://127.0.0.1:27017").then((clientObject) => {
+    var database = clientObject.db("reactdb");
+    database
+      .collection("tblproducts")
+      .find({ id: productId })
+      .toArray()
+      .then((documents) => {
+        res.send(documents);
+        res.end();
+      });
+  });
+});
 // app.post("/registeruser", (req, res) => {
 //   var userDetail = {
 //     UserId: req.body.UserId,
@@ -71,7 +114,6 @@ app.get("/getusers", (req, res) => {
 //     database.collection("tblusers").insertOne(userDetail);
 //   });
 // });
-
 
 app.post("/registeruser", async (req, res) => {
   try {
@@ -100,7 +142,6 @@ app.post("/registeruser", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 
 app.get("*", (req, res) => {
   res.send("<code>Not Found: Page you requested Not found</code>");

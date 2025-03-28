@@ -4,6 +4,8 @@ import IShopHome from "./IShopHome";
 import IShopRegister from "./IShopRegister";
 import IShopLogin from "./IShopLogin";
 import IShopDashboard from "./IShopDashboard";
+import IShopProducts from "./IShopProducts";
+import IShopProductDetails from "./IShopProductDetails";
 
 const IShopIndexComponent = () => {
   return (
@@ -42,6 +44,8 @@ const IShopIndexComponent = () => {
               <Route path="register" element={<IShopRegister />} />
               <Route path="login" element={<IShopLogin />} />
               <Route path="dashboard" element={<IShopDashboard />} />
+              <Route path="products/:category" element={<IShopProducts />} />
+              <Route path="details/:_id" element={<IShopProductDetails/>} />
               <Route
                 path="errorpage"
                 element={

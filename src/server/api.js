@@ -27,6 +27,7 @@
 
 var express = require("express");
 var cors = require("cors");
+const { ObjectId } = require("mongodb");
 var mongoClient = require("mongodb").MongoClient;
 
 var app = express();
@@ -85,21 +86,59 @@ app.get("/getcategories", (req, res) => {
   });
 });
 
-app.get("/getproduct/:id", (req, res) => {
-  let productId = parseInt(req.params.id);
-  // console.log(req)
-  mongoClient.connect("mongodb://127.0.0.1:27017").then((clientObject) => {
-    var database = clientObject.db("reactdb");
-    database
-      .collection("tblproducts")
-      .find({ id: productId })
-      .toArray()
-      .then((documents) => {
-        res.send(documents);
-        res.end();
-      });
-  });
+// app.get("/getproduct/:_id", (req, res) => {
+//   // let productId = parseInt(req.params._id);
+//   let productId = (req.params._id);
+//   // console.log(req)
+//   mongoClient.connect("mongodb://127.0.0.1:27017").then((clientObject) => {
+//     var database = clientObject.db("reactdb");
+//     database
+//       .collection("tblproducts")
+//       // .find({id:productId})
+//       .find({ _id:new ObjectId(productId) })
+//       .toArray()
+//       .then((documents) => {
+//         res.send(documents);
+//         res.end();
+//       });
+//   });
+// });
+
+app.get("/getproduct/:_id", (req, res) => {
+  let productId = req.params._id;
+
+  // Validate ObjectId
+  if (!ObjectId.isValid(productId)) {
+    return res.status(400).send({ error: "Invalid product ID" });
+  }
+
+  mongoClient.connect("mongodb://127.0.0.1:27017")
+    .then((clientObject) => {
+      var database = clientObject.db("reactdb");
+
+      database
+        .collection("tblproducts")
+        .find({ _id: new ObjectId(productId) }) // Convert only if valid
+        .toArray()
+        .then((documents) => {
+          res.send(documents);
+        })
+        .catch((err) => {
+          console.error("Error fetching product:", err);
+          res.status(500).send({ error: "Error fetching product" });
+        })
+        .finally(() => {
+          clientObject.close();
+        });
+    })
+    .catch((err) => {
+      console.error("Error connecting to MongoDB:", err);
+      res.status(500).send({ error: "Database connection error" });
+    });
 });
+
+
+
 // app.post("/registeruser", (req, res) => {
 //   var userDetail = {
 //     UserId: req.body.UserId,

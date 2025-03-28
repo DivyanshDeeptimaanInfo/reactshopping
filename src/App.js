@@ -9,12 +9,17 @@ import IShopIndexComponent from "./IShop/IShopIndexComponent";
 
 function App() {
   return (
-    <div className="App">
-      {/* <JqueryAjaxDemo/> */}
-      {/* <AxiosDemo/> */}
-      {/* <ShoppingIndex/> */}
-      {/* <SPAComponent /> */}
-      {/* <SPAComponent2/> */}
+    // <div className="App">
+    //   {/* <JqueryAjaxDemo/> */}
+    //   {/* <AxiosDemo/> */}
+    //   {/* <ShoppingIndex/> */}
+    //   {/* <SPAComponent /> */}
+    //   {/* <SPAComponent2/> */}
+    //   <CookiesProvider>
+    //     <IShopIndexComponent />
+    //   </CookiesProvider>
+    // </div>
+    <div>
       <CookiesProvider>
         <IShopIndexComponent />
       </CookiesProvider>

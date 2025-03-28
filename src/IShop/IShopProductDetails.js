@@ -21,7 +21,7 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const IShopProductDetails = () => {
   const [product, setProduct] = useState([]); // Set to `null` instead of an empty array
@@ -61,7 +61,7 @@ const IShopProductDetails = () => {
         </div>
         <div className="card-body">
           <p>Price: ${product.price}</p>
-          <p>Description: {product.description}</p>
+          <p className="display-3 fs-6">Description: {product.description}</p>
           <p>
             Rating: {product?.rating?.rate || "No rating available"}&nbsp;[
             {product?.rating?.count || "No count available"}]
@@ -69,6 +69,7 @@ const IShopProductDetails = () => {
           {/* <p>Rating { product.rating.rate}</p> */}
         </div>
       </div>
+      <Link to={"/products/"+product.category}>Back to Products</Link>
     </div>
   );
 };
